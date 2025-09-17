@@ -22,11 +22,6 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      prettier: prettierPlugin,
-    },
     ignores: ['node_modules/**', 'out/**', 'build/**', 'dist/**', 'scripts/**'],
     rules: {
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
