@@ -1,0 +1,39 @@
+{
+  "HTML Tag with Data Role and Classname": {
+    "prefix": "tagdrc",
+    "body": [
+      "<${1:div}",
+      "  data-role='${2:}'",
+      "  className='${3:}'",
+      ">",
+      "  ${4:content}",
+      "</${1:div}>",
+    ],
+    "description": "Cria uma tag HTML com data-role e className",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+  },
+  "ClassName": {
+    "prefix": "dr",
+    "body": ["className='${1:}'"],
+    "description": "Adiciona atributo className",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+  },
+  "Data Role": {
+    "prefix": "dr",
+    "body": ["data-role='${1:}'"],
+    "description": "Adiciona atributo data-role",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+  },
+  "IconView Component": {
+    "prefix": "icvw",
+    "body": [
+      "<IconView",
+      "  icon='${1:}'",
+      "  library='${2:default}'",
+      "  className='${3:}'",
+      "/>",
+    ],
+    "description": "Cria um componente IconView com className",
+    "scope": "typescript,typescriptreact,javascript,javascriptreact",
+  },
+}
