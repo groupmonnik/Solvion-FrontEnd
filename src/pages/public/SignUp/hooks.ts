@@ -10,17 +10,20 @@ export function useSignUpCore() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
+      name: '',
       lastName: '',
       cpf: '',
-      telephone: '',
+      isForeigner: false,
       email: '',
       password: '',
-      repassword: '',
+      passwordConfirm: '',
+      cep: '',
+      address: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    // eslint-disable-next-line no-console
     console.log(values);
   }
 

@@ -3,7 +3,7 @@ import z from 'zod';
 
 export const formSchema = z
   .object({
-    firstName: z
+    name: z
       .string()
       .min(1, {
         message: 'Campo obrigatório.',
@@ -30,17 +30,7 @@ export const formSchema = z
       .regex(/^\d+$/, {
         message: 'CPF deve conter apenas números.',
       }),
-    telephone: z
-      .string()
-      .min(1, {
-        message: 'Campo obrigatório.',
-      })
-      .max(15, {
-        message: 'O campo deve ter no máximo 15 caracteres.',
-      })
-      .regex(/^\d+$/, {
-        message: 'Telefone deve conter apenas números.',
-      }),
+    isForeigner: z.boolean(),
     email: z
       .string()
       .min(1, {
@@ -64,7 +54,7 @@ export const formSchema = z
         message:
           'Senha deve conter pelo menos 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caractere especial (@$!%*?&).',
       }),
-    repassword: z
+    passwordConfirm: z
       .string()
       .min(1, {
         message: 'Campo obrigatório.',
@@ -72,8 +62,24 @@ export const formSchema = z
       .max(500, {
         message: 'O campo deve ter no máximo 500 caracteres.',
       }),
+    cep: z
+      .string()
+      .min(1, {
+        message: 'Campo obrigatório.',
+      })
+      .max(10, {
+        message: 'O campo deve ter no máximo 10 caracteres.',
+      }),
+    address: z
+      .string()
+      .min(1, {
+        message: 'Campo obrigatório.',
+      })
+      .max(200, {
+        message: 'O campo deve ter no máximo 200 caracteres.',
+      }),
   })
-  .refine((data) => data.password === data.repassword, {
+  .refine((data) => data.password === data.passwordConfirm, {
     message: 'As senhas não coincidem.',
-    path: ['repassword'],
+    path: ['passwordConfirm'],
   });

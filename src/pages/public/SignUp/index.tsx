@@ -1,275 +1,304 @@
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { useSignUpCore } from './hooks';
 import sysUtils from '@/utils';
-import React from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Link } from 'react-router-dom';
 
 export default function SignUpPage() {
   const { form, onSubmit, isVisibility, handleMouseDown, handleMouseUp } = useSignUpCore();
   return (
     <main
       data-role='signup-page-container'
-      className='flex h-full w-full items-center justify-center p-12 px-6'
+      className='flex h-full min-h-dvh w-full items-center justify-center p-6'
     >
       <div
         data-role='signup-content-wrapper'
-        className='flex w-full max-w-[43rem] flex-col items-center gap-12'
+        className='relative flex w-full max-w-[79.625rem] flex-col-reverse items-stretch rounded-[3rem] bg-[#FFFEFE9C] lg:min-h-[36.9rem] lg:flex-row xl:min-h-[43.125rem]'
       >
-        <h1
-          data-role='signup-page-title'
-          className='text-center text-5xl select-none'
-        >
-          Bem-vindo(a) ao <br />
-          <b>Solvion</b>
-        </h1>
-        <div
-          data-role='signup-form-container'
-          className='border-[#00FF901A flex w-full flex-col rounded-3xl border bg-[#C8C8C82E] px-6 py-16 backdrop-blur-md sm:px-20 md:px-28'
-        >
-          <Form {...form}>
-            <form
-              data-role='signup-form'
-              onSubmit={form.handleSubmit(onSubmit)}
-              className='flex flex-col space-y-8'
+        <section className='z-[2] flex w-full flex-col items-center justify-center rounded-[3rem] bg-[#68C8AE] px-10 py-14 lg:w-1/2 lg:px-16 lg:py-16'>
+          <h1 className='text-center text-5xl leading-normal font-bold text-white'>
+            Bem-vindo(a) <br /> ao Solvion
+          </h1>
+          <h2 className='mt-4 text-center text-2xl leading-normal font-bold text-white'>
+            Para se manter conectado conosco <br /> faça login com suas informações pessoais
+          </h2>
+          <Link to='/sign-in'>
+            <Button
+              variant='outline'
+              className='mt-20'
+              size='md'
             >
-              <RadioGroup
-                data-role='signup-person-type-selector'
-                defaultValue='comfortable'
-                className='mx-auto flex gap-8'
-              >
-                <div
-                  data-role='signup-radio-option-fisica'
-                  className='flex items-center'
+              Entrar
+            </Button>
+          </Link>
+        </section>
+
+        <div className='z-[1] flex w-full flex-col rounded-r-[3rem] px-10 pt-0 pb-14 lg:w-1/2 lg:px-16 lg:pt-10 lg:pb-10'>
+          <div className='flex h-full flex-col items-center justify-center'>
+            <section className='flex w-full max-w-full flex-col items-center lg:max-w-[24rem]'>
+              <h1 className='text-4xl leading-normal font-bold text-black'>Registrar</h1>
+              <h2 className='mt-2 text-xl leading-normal font-bold text-black/60'>
+                Crie sua conta para começar
+              </h2>
+
+              <Form {...form}>
+                <form
+                  data-role='signup-form'
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className='mt-8 flex w-full flex-col gap-4'
                 >
-                  <RadioGroupItem
-                    data-role='signup-radio-fisica'
-                    value='default'
-                    id='r1'
-                    className='cursor-pointer bg-white'
-                  />
-                  <Label
-                    data-role='signup-label-fisica'
-                    htmlFor='r1'
-                    className='cursor-pointer pl-3'
+                  <div
+                    data-role='signup-name-fields-wrapper'
+                    className='flex flex-col gap-4 sm:flex-row'
                   >
-                    Pessoa Física
-                  </Label>
-                </div>
-                <div
-                  data-role='signup-radio-option-juridica'
-                  className='flex items-center'
-                >
-                  <RadioGroupItem
-                    data-role='signup-radio-juridica'
-                    value='comfortable'
-                    id='r2'
-                    className='cursor-pointer bg-white'
-                  />
-                  <Label
-                    data-role='signup-label-juridica'
-                    htmlFor='r2'
-                    className='cursor-pointer pl-3'
+                    <FormField
+                      control={form.control}
+                      name='name'
+                      render={({ field }) => (
+                        <FormItem
+                          data-role='signup-name-field'
+                          className='flex-1'
+                        >
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-role='signup-name-input'
+                              placeholder='Nome'
+                              className='mt-auto'
+                              autoScroll
+                            />
+                          </FormControl>
+                          <FormMessage data-role='signup-name-error' />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name='lastName'
+                      render={({ field }) => (
+                        <FormItem
+                          data-role='signup-lastname-field'
+                          className='flex-1'
+                        >
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-role='signup-lastname-input'
+                              placeholder='Sobrenome'
+                              autoScroll
+                            />
+                          </FormControl>
+                          <FormMessage data-role='signup-lastname-error' />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div
+                    data-role='signup-cpf-fields-wrapper'
+                    className='flex items-center gap-4'
                   >
-                    Pessoa Jurídica
-                  </Label>
-                </div>
-              </RadioGroup>
-              <div
-                data-role='signup-name-fields-wrapper'
-                className='flex flex-col gap-2 sm:flex-row sm:gap-8'
-              >
-                <FormField
-                  control={form.control}
-                  name='firstName'
-                  render={({ field }) => (
-                    <FormItem
-                      data-role='signup-firstname-field'
-                      className='flex-1'
-                    >
-                      <FormLabel data-role='signup-firstname-label'>Nome Completo *</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          data-role='signup-firstname-input'
-                          placeholder='Nome'
-                          className='mt-auto'
-                          autoScroll
-                        />
-                      </FormControl>
-                      <FormMessage data-role='signup-firstname-error' />
-                    </FormItem>
-                  )}
-                />
+                    <FormField
+                      control={form.control}
+                      name='cpf'
+                      render={({ field }) => (
+                        <FormItem
+                          data-role='signup-cpf-field'
+                          className='flex-1'
+                        >
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-role='signup-cpf-input'
+                              placeholder='CPF'
+                              autoScroll
+                              onChange={(e) => {
+                                const formattedValue = sysUtils.mask.number({
+                                  value: e.target.value,
+                                  mask: '###.###.###-##',
+                                });
 
-                <FormField
-                  control={form.control}
-                  name='lastName'
-                  render={({ field }) => (
-                    <FormItem
-                      data-role='signup-lastname-field'
-                      className='mt-auto flex-1'
-                    >
-                      <FormControl className='items-end'>
-                        <Input
-                          {...field}
-                          data-role='signup-lastname-input'
-                          placeholder='Sobrenome'
-                          autoScroll
-                        />
-                      </FormControl>
-                      <FormMessage data-role='signup-lastname-error' />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                                field.onChange(formattedValue);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage data-role='signup-cpf-error' />
+                        </FormItem>
+                      )}
+                    />
 
-              <FormField
-                control={form.control}
-                name='cpf'
-                render={({ field }) => (
-                  <FormItem data-role='signup-cpf-field'>
-                    <FormLabel data-role='signup-cpf-label'>CPF *</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        data-role='signup-cpf-input'
-                        placeholder='EX.: 123.456.789-10'
-                        autoScroll
-                        onChange={(e) => {
-                          const formattedValue = sysUtils.mask.number({
-                            value: e.target.value,
-                            mask: '###.###.###-##',
-                          });
+                    <FormField
+                      control={form.control}
+                      name='isForeigner'
+                      render={({ field }) => (
+                        <FormItem
+                          data-role='signup-foreigner-field'
+                          className='w-fit sm:w-auto sm:flex-1'
+                        >
+                          <div className='flex items-center gap-2'>
+                            <input
+                              type='checkbox'
+                              id='isForeigner'
+                              checked={field.value}
+                              onChange={(e) => field.onChange(e.target.checked)}
+                              className='h-4 w-4 cursor-pointer'
+                            />
+                            <Label
+                              htmlFor='isForeigner'
+                              className='cursor-pointer text-sm font-normal'
+                            >
+                              Sou Estrangeiro
+                            </Label>
+                          </div>
+                          <FormMessage data-role='signup-foreigner-error' />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
-                          field.onChange(formattedValue);
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage data-role='signup-cpf-error' />
-                  </FormItem>
-                )}
-              />
+                  <FormField
+                    control={form.control}
+                    name='email'
+                    render={({ field }) => (
+                      <FormItem data-role='signup-email-field'>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            data-role='signup-email-input'
+                            placeholder='E-mail'
+                            autoScroll
+                          />
+                        </FormControl>
+                        <FormMessage data-role='signup-email-error' />
+                      </FormItem>
+                    )}
+                  />
 
-              <FormField
-                control={form.control}
-                name='telephone'
-                render={({ field }) => (
-                  <FormItem data-role='signup-telephone-field'>
-                    <FormLabel data-role='signup-telephone-label'>Telefone *</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        data-role='signup-telephone-input'
-                        placeholder='EX.: (99) 99999-9999'
-                        onChange={(e) => {
-                          const formattedValue = sysUtils.mask.phone({ value: e.target.value });
+                  <FormField
+                    control={form.control}
+                    name='password'
+                    render={({ field }) => (
+                      <FormItem data-role='signup-password-field'>
+                        <FormControl>
+                          <div className='relative'>
+                            <Input
+                              data-role='signup-password-input'
+                              type={isVisibility ? 'text' : 'password'}
+                              placeholder='Senha'
+                              {...field}
+                            />
+                            <button
+                              type='button'
+                              onMouseDown={handleMouseDown}
+                              onMouseUp={handleMouseUp}
+                              className='absolute top-1/2 right-3 -translate-y-1/2'
+                            >
+                              {isVisibility ? (
+                                <VisibilityOffIcon className='text-black/50' />
+                              ) : (
+                                <VisibilityIcon className='text-black/50' />
+                              )}
+                            </button>
+                          </div>
+                        </FormControl>
+                        <FormMessage data-role='signup-password-error' />
+                      </FormItem>
+                    )}
+                  />
 
-                          field.onChange(formattedValue);
-                        }}
-                        autoScroll
-                      />
-                    </FormControl>
-                    <FormMessage data-role='signup-telephone-error' />
-                  </FormItem>
-                )}
-              />
+                  <FormField
+                    control={form.control}
+                    name='passwordConfirm'
+                    render={({ field }) => (
+                      <FormItem data-role='signup-passwordconfirm-field'>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            data-role='signup-passwordconfirm-input'
+                            type='password'
+                            placeholder='Confirmar Senha'
+                            autoScroll
+                          />
+                        </FormControl>
+                        <FormMessage data-role='signup-passwordconfirm-error' />
+                      </FormItem>
+                    )}
+                  />
 
-              <FormField
-                control={form.control}
-                name='email'
-                render={({ field }) => (
-                  <FormItem data-role='signup-email-field'>
-                    <FormLabel data-role='signup-email-label'>E-mail *</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        data-role='signup-email-input'
-                        placeholder='EX.: solvion@email.com'
-                        autoScroll
-                      />
-                    </FormControl>
-                    <FormMessage data-role='signup-email-error' />
-                  </FormItem>
-                )}
-              />
+                  <div
+                    data-role='signup-address-fields-wrapper'
+                    className='flex flex-col gap-4 sm:flex-row'
+                  >
+                    <FormField
+                      control={form.control}
+                      name='cep'
+                      render={({ field }) => (
+                        <FormItem
+                          data-role='signup-cep-field'
+                          className='flex-1'
+                        >
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-role='signup-cep-input'
+                              placeholder='CEP'
+                              className='mt-auto'
+                              autoScroll
+                              onChange={(e) => {
+                                const formattedValue = sysUtils.mask.number({
+                                  value: e.target.value,
+                                  mask: '#####-###',
+                                });
 
-              <div
-                data-role='signup-password-fields-wrapper'
-                className='flex flex-col gap-2'
-              >
-                <FormField
-                  control={form.control}
-                  name='password'
-                  render={({ field }) => (
-                    <FormItem data-role='signup-password-field'>
-                      <FormLabel data-role='signup-password-label'>Senha *</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          data-role='signup-password-input'
-                          append={React.createElement(
-                            isVisibility ? VisibilityIcon : VisibilityOffIcon,
-                            {
-                              onMouseDown: handleMouseDown,
-                              onMouseUp: handleMouseUp,
-                              onMouseLeave: handleMouseUp,
-                              onTouchStart: handleMouseDown,
-                              onTouchEnd: handleMouseUp,
-                              onMouseMove: handleMouseUp,
-                              className:
-                                'cursor-pointer text-ud-middle-gray hover:text-ud-black transition-colors duration-300',
-                            },
-                          )}
-                          type={isVisibility ? 'text' : 'password'}
-                          placeholder='EX.: @Solvion1'
-                          autoScroll
-                        />
-                      </FormControl>
-                      <FormMessage data-role='signup-password-error' />
-                    </FormItem>
-                  )}
-                />
+                                field.onChange(formattedValue);
+                              }}
+                            />
+                          </FormControl>
+                          <FormMessage data-role='signup-cep-error' />
+                        </FormItem>
+                      )}
+                    />
 
-                <FormField
-                  control={form.control}
-                  name='repassword'
-                  render={({ field }) => (
-                    <FormItem data-role='signup-repassword-field'>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          data-role='signup-repassword-input'
-                          type='password'
-                          placeholder='Repetir a senha'
-                          autoScroll
-                        />
-                      </FormControl>
-                      <FormMessage data-role='signup-repassword-error' />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                    <FormField
+                      control={form.control}
+                      name='address'
+                      render={({ field }) => (
+                        <FormItem
+                          data-role='signup-address-field'
+                          className='flex-1'
+                        >
+                          <FormControl>
+                            <Input
+                              {...field}
+                              data-role='signup-address-input'
+                              placeholder='Endereço'
+                              autoScroll
+                            />
+                          </FormControl>
+                          <FormMessage data-role='signup-address-error' />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
-              <Button
-                data-role='signup-submit-button'
-                type='submit'
-              >
-                REGISTRAR
-              </Button>
-            </form>
-          </Form>
+                  <Button
+                    data-role='signup-submit-button'
+                    type='submit'
+                    variant='default'
+                    size='md'
+                    className='text-ud-white mt-4 w-full bg-[#68C8AE] hover:bg-[#68C8AE]/90'
+                  >
+                    Registrar
+                  </Button>
+                </form>
+              </Form>
+            </section>
+          </div>
         </div>
       </div>
     </main>
