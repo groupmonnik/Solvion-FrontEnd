@@ -1,143 +1,123 @@
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import React from 'react';
 import { useSignInCore } from './hooks';
 import { Link } from 'react-router-dom';
 
 export default function SignInPage() {
   const { form, isVisibility, onSubmit, handleMouseDown, handleMouseUp } = useSignInCore();
+
   return (
     <main
       data-role='signin-page-container'
-      className='flex h-full w-full items-center justify-center p-12 px-6'
+      className='flex h-full min-h-dvh w-full items-center justify-center p-12 px-6'
     >
       <div
         data-role='signin-content-wrapper'
-        className='flex w-full max-w-[43rem] flex-col items-center gap-12'
+        className='relative flex w-full max-w-[79.625rem] flex-col-reverse items-stretch rounded-[3rem] bg-[#FFFEFE9C] lg:min-h-[36.9rem] lg:flex-row xl:min-h-[43.125rem]'
       >
-        <h1
-          data-role='signin-page-title'
-          className='text-5xl select-none'
-        >
-          Bem-vindo(a) de <br />
-          volta ao <b>Solvion</b>
-        </h1>
-        <div
-          data-role='signin-form-container'
-          className='border-[#00FF901A flex w-full flex-col rounded-3xl border bg-[#C8C8C82E] px-6 py-16 backdrop-blur-md sm:px-20 md:px-28'
-        >
-          <Form {...form}>
-            <form
-              data-role='signin-form'
-              onSubmit={form.handleSubmit(onSubmit)}
-              className='flex flex-col space-y-8'
+        <section className='z-[2] flex w-full flex-col items-center justify-center rounded-[3rem] bg-[#68C8AE] px-10 py-14 lg:w-1/2 lg:px-16 lg:py-16'>
+          <h1 className='text-center text-5xl leading-normal font-bold text-white'>
+            Bem-vindo(a) <br /> de volta
+          </h1>
+          <h2 className='mt-4 text-center text-2xl leading-normal font-bold text-white'>
+            Ainda não tem uma conta? Registre-se <br /> para começar
+          </h2>
+          <Link to='/sign-up'>
+            <Button
+              variant='outline'
+              className='mt-20'
+              size='md'
             >
-              <FormField
-                control={form.control}
-                name='login'
-                render={({ field }) => (
-                  <FormItem data-role='signin-login-field'>
-                    <FormLabel data-role='signin-login-label'>Login</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        data-role='signin-login-input'
-                        placeholder='E-mail'
-                        autoScroll
-                      />
-                    </FormControl>
-                    <FormMessage data-role='signin-login-error' />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='password'
-                render={({ field }) => (
-                  <FormItem data-role='signin-password-field'>
-                    <FormLabel data-role='signin-password-label'>Senha</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        data-role='signin-password-input'
-                        placeholder='Senha'
-                        append={React.createElement(
-                          isVisibility ? VisibilityIcon : VisibilityOffIcon,
-                          {
-                            onMouseDown: handleMouseDown,
-                            onMouseUp: handleMouseUp,
-                            onMouseLeave: handleMouseUp,
-                            onTouchStart: handleMouseDown,
-                            onTouchEnd: handleMouseUp,
-                            onMouseMove: handleMouseUp,
-                            className:
-                              'cursor-pointer text-ud-middle-gray hover:text-ud-black transition-colors duration-300',
-                          },
-                        )}
-                        type={isVisibility ? 'text' : 'password'}
-                        autoScroll
-                      />
-                    </FormControl>
-
-                    <div
-                      data-role='signin-password-footer'
-                      className='flex flex-nowrap gap-4'
-                    >
-                      <FormMessage data-role='signin-password-error' />
-
-                      <a
-                        data-role='signin-forgot-password-link'
-                        className='hover:text-ud-black text-ud-middle-gray ml-auto flex cursor-pointer whitespace-nowrap underline transition-colors duration-300'
-                      >
-                        Esqueci a senha
-                      </a>
-                    </div>
-                  </FormItem>
-                )}
-              />
-              <Button
-                data-role='signin-submit-button'
-                type='submit'
-              >
-                ENTRAR
-              </Button>
-            </form>
-          </Form>
-
-          <div
-            data-role='signin-divider'
-            className='text-ud-middle-gray mt-10 mb-6 flex flex-nowrap items-center gap-4.5 text-2xl font-light select-none'
-          >
-            <div
-              data-role='signin-divider-line-left'
-              className='bg-ud-middle-gray h-px flex-1'
-            />
-            ou
-            <div
-              data-role='signin-divider-line-right'
-              className='bg-ud-middle-gray h-px flex-1'
-            />
-          </div>
-
-          <Link
-            data-role='signin-create-account-link'
-            to={'/sign-up'}
-            className='text-ud-middle-gray hover:text-ud-black mx-auto cursor-pointer text-2xl font-light underline transition-colors duration-300 select-none'
-          >
-            Criar conta
+              Registrar
+            </Button>
           </Link>
+        </section>
+
+        <div className='z-[1] flex w-full flex-col rounded-r-[3rem] px-10 pt-0 pb-14 lg:w-1/2 lg:px-16 lg:pt-16 lg:pb-16'>
+          <div className='flex h-full flex-col items-center justify-center'>
+            <section className='flex w-full max-w-full flex-col items-center lg:max-w-[24rem]'>
+              <h1 className='text-4xl leading-normal font-bold text-black'>Entrar</h1>
+              <h2 className='mt-2 text-xl leading-normal font-bold text-black/60'>
+                Use seu email e senha para entrar
+              </h2>
+
+              <Form {...form}>
+                <form
+                  data-role='signin-form'
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className='mt-8 flex w-full flex-col gap-6'
+                >
+                  <FormField
+                    control={form.control}
+                    name='email'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            data-role='email-input'
+                            placeholder='E-mail'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage className='text-red-500' />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='password'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <div className='relative'>
+                            <Input
+                              data-role='password-input'
+                              type={isVisibility ? 'text' : 'password'}
+                              placeholder='Senha'
+                              {...field}
+                            />
+                            <button
+                              type='button'
+                              onMouseDown={handleMouseDown}
+                              onMouseUp={handleMouseUp}
+                              className='absolute top-1/2 right-3 -translate-y-1/2'
+                            >
+                              {isVisibility ? (
+                                <VisibilityOffIcon className='text-black/50' />
+                              ) : (
+                                <VisibilityIcon className='text-black/50' />
+                              )}
+                            </button>
+                          </div>
+                        </FormControl>
+                        <FormMessage className='text-red-500' />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    data-role='submit-button'
+                    type='submit'
+                    variant='default'
+                    size='md'
+                    className='text-ud-white mt-4 w-full bg-[#68C8AE] hover:bg-[#68C8AE]/90'
+                  >
+                    Entrar
+                  </Button>
+                </form>
+              </Form>
+
+              <Link
+                to='/forgot-password'
+                className='mt-14 text-lg font-normal text-[#1E1E1E] hover:underline'
+              >
+                Esqueceu a senha?
+              </Link>
+            </section>
+          </div>
         </div>
       </div>
     </main>

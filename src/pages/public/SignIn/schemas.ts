@@ -2,7 +2,7 @@ import sysConstants from '@/constants';
 import z from 'zod';
 
 export const formSchema = z.object({
-  login: z
+  email: z
     .string()
     .min(1, {
       message: 'Campo obrigatório.',

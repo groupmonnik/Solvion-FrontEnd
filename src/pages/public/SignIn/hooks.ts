@@ -10,7 +10,7 @@ export function useSignInCore() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      login: '',
+      email: '',
       password: '',
     },
   });
