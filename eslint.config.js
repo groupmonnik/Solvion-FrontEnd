@@ -32,7 +32,6 @@ export default tseslint.config([
 
       'react-hooks/rules-of-hooks': 'off',
       'react-hooks/exhaustive-deps': 'off',
-      'react-refresh/only-export-components': 'warn',
     },
   },
   {
