@@ -19,11 +19,11 @@ export default function SignUpPage() {
         data-role='signup-content-wrapper'
         className='relative flex w-full max-w-[79.625rem] flex-col-reverse items-stretch rounded-[3rem] bg-[#FFFEFE9C] lg:min-h-[36.9rem] lg:flex-row xl:min-h-[43.125rem]'
       >
-        <section className='z-[2] flex w-full flex-col items-center justify-center rounded-[3rem] bg-[#68C8AE] px-10 py-14 lg:w-1/2 lg:px-16 lg:py-16'>
+        <section className='z-[2] flex w-full flex-col items-center justify-center rounded-[3rem] bg-[#68C8AE] px-8 py-14 sm:px-10 lg:w-1/2 lg:px-16 lg:py-16'>
           <h1 className='text-center text-5xl leading-normal font-bold text-white'>
             Bem-vindo(a) <br /> ao Solvion
           </h1>
-          <h2 className='mt-4 text-center text-2xl leading-normal font-bold text-white'>
+          <h2 className='mt-4 text-center text-xl leading-normal font-bold text-white sm:text-2xl lg:text-xl xl:text-2xl'>
             Para se manter conectado conosco <br /> faça login com suas informações pessoais
           </h2>
           <Link to='/sign-in'>
@@ -101,7 +101,7 @@ export default function SignUpPage() {
 
                   <div
                     data-role='signup-cpf-fields-wrapper'
-                    className='flex items-center gap-4'
+                    className='flex gap-4'
                   >
                     <FormField
                       control={form.control}
@@ -140,7 +140,7 @@ export default function SignUpPage() {
                           data-role='signup-foreigner-field'
                           className='w-fit sm:w-auto sm:flex-1'
                         >
-                          <div className='flex items-center gap-2'>
+                          <div className='mt-4.5 flex h-fit items-center gap-2'>
                             <input
                               type='checkbox'
                               id='isForeigner'
@@ -150,7 +150,7 @@ export default function SignUpPage() {
                             />
                             <Label
                               htmlFor='isForeigner'
-                              className='cursor-pointer text-sm font-normal'
+                              className='h-fit cursor-pointer items-start text-sm font-normal'
                             >
                               Sou Estrangeiro
                             </Label>
