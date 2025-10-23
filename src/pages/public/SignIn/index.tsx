@@ -24,7 +24,9 @@ export default function SignInPage() {
             Bem-vindo(a) <br /> de volta
           </h1>
           <h2 className='mt-4 text-center text-2xl leading-normal font-bold text-white'>
-            Ainda não tem uma conta? Registre-se <br /> para começar
+            Ainda não tem uma conta?
+            <br className='flex sm:hidden' /> Registre-se <br className='hidden sm:flex' /> para
+            começar
           </h2>
           <Link to='/sign-up'>
             <Button
