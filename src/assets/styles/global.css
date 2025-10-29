@@ -132,7 +132,17 @@ body {
   * {
     @apply border-border outline-ring/50;
     box-sizing: border-box;
+  }
+
+  .auth-layout__wrapper * {
     font-family: 'Inter', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .default-layout__wrapper * {
+    font-family: 'Manrope', sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
