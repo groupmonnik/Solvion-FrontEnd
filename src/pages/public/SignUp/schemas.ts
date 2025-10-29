@@ -79,7 +79,16 @@ export const formSchema = z
         message: 'O campo deve ter no máximo 200 caracteres',
       }),
   })
-  .refine((data) => data.password === data.passwordConfirm, {
-    message: 'As senhas não coincidem',
-    path: ['passwordConfirm'],
-  });
+  .refine(
+    (data) => {
+      if (data.password && data.password !== data.passwordConfirm) {
+        return false;
+      }
+
+      return true;
+    },
+    {
+      message: 'As senhas não coincidem',
+      path: ['passwordConfirm'],
+    },
+  );
